@@ -1,36 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SteamControl : MonoBehaviour
 {
-    public int moveSpeed = 4;
-    public GameObject baloon;
+
+    public float jumpVelocity=10f;
+    public GameObject baloon,exhaust;
+    Rigidbody2D baloonRigidbody;
+    TextMeshPro textMesh;
+    bool entered=false;
     // Start is called before the first frame update
     void Start()
     {
+        baloon =GameObject.Find("Baloon");
+        baloonRigidbody=baloon.GetComponent<Rigidbody2D>();
+        textMesh=exhaust.GetComponent<TextMeshPro>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            PushUp();
+        foreach (char c in Input.inputString)
+        {   
+            //c: character pressed in small case. c-32: character converted to Uppercase.
+            if ( ( (char)(c-32) ).ToString() == textMesh.text) 
+            {
+    Jump();
+            }
+            
         }
         
     }
 
-    void PushUp()
-{
-    //  Vector3 position = transform.position;
-    //  Vector3 targetPosition = other.gameObject.transform.position;
-    //  Vector3 direction = targetPosition - position;
-    //  direction.Normalize();
-    Debug.Log("Down");
-    for(int i=0;i<moveSpeed;i++)
-     baloon.transform.position += new Vector3(0,1,0) * Time.deltaTime;
+    private void OnTriggerEnter2D(Collider2D other) {
+        entered=true;
+    }
 
-}
+    private void OnTriggerExit2D(Collider2D other) {
+        entered=false;
+    }
+
+
+
+    void Jump(){
+        if(entered) {     baloonRigidbody.velocity=Vector2.up * jumpVelocity;}
+    }
+
 }
