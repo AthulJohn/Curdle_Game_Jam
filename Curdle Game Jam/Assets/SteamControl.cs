@@ -7,18 +7,20 @@ public class SteamControl : MonoBehaviour
 {
 
     public float jumpVelocity=10f;
-    public GameObject baloon,exhaust,steam;
+    public GameObject exhaustText,steam;
+    GameObject baloon;
     Rigidbody2D baloonRigidbody;
     TextMeshPro textMesh;
-    Animator animator;
+    Animator steamAnimator,baloonAnimator;
     bool entered=false;
     // Start is called before the first frame update
     void Start()
     {
         baloon =GameObject.Find("Baloon");
-        animator=steam.GetComponent<Animator>();
+        steamAnimator=steam.GetComponent<Animator>();
+        baloonAnimator=baloon.GetComponent<Animator>();
         baloonRigidbody=baloon.GetComponent<Rigidbody2D>();
-        textMesh=exhaust.GetComponent<TextMeshPro>();
+        textMesh=exhaustText.GetComponent<TextMeshPro>();
         
     }
 
@@ -48,8 +50,11 @@ public class SteamControl : MonoBehaviour
 
 
     void Jump(){
-        animator.SetTrigger("SteamTrigger");
-        if(entered) {     baloonRigidbody.velocity=Vector2.up * jumpVelocity;}
+        steamAnimator.SetTrigger("SteamTrigger");
+        if(entered) {     
+            baloonAnimator.SetTrigger("BaloonTrigger");
+            baloonRigidbody.velocity=Vector2.up * jumpVelocity;
+        }
     }
 
 }

@@ -100,7 +100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  baloon: {fileID: 0}
 --- !u!50 &8328899611604909080
 Rigidbody2D:
   serializedVersion: 4
@@ -193,8 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpVelocity: 2
-  baloon: {fileID: 6759670476124209707, guid: 9ba28e6238fd8324e89c377ec7423d4f, type: 3}
-  exhaust: {fileID: 3592925957652252765}
+  exhaustText: {fileID: 3592925957652252765}
   steam: {fileID: 5868884864983618603}
 --- !u!1 &3592925957652252765
 GameObject:

@@ -5,8 +5,9 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     private Vector2 screenBounds;
-    public GameObject exhaust;
+    public GameObject exhaust,fire;
     public float spawntime;
+    int var=0;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,18 +20,23 @@ public class Spawner : MonoBehaviour
         a.transform.position=new Vector2(screenBounds.x*2,-2.9f);
     }
 
+    public void SpawnFire(){
+        GameObject a=Instantiate(fire) as GameObject;
+        a.transform.position=new Vector2(screenBounds.x*2,-2.9f);
+    }
+
     IEnumerator Waver()
     {
         while(true)
         {
-            float toWait= Random.Range(1.0f,3.5f);
-            yield return new WaitForSeconds(toWait+1.0f);
+            float toWait= Random.value;
+            yield return new WaitForSeconds(toWait+0.5f);
+           var+=Random.Range(1,3);
+           var=var%4;
+           if(var==0)
+            SpawnFire();
+            else
             SpawnEnemy();
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

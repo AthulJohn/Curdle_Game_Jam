@@ -8,8 +8,7 @@ public class ExhaustControl : MonoBehaviour
 
     char ch;
     
-    public float moveSpeed=5f;
-    public GameObject baloon;
+    public float moveSpeed=3f;
     GameObject textObject;
     TextMeshPro textMesh;
 
