@@ -5,24 +5,53 @@ using UnityEngine;
 public class SquareController : MonoBehaviour
 {
     public GameObject mask;
+    bool pressed=false;
+    float firstPresstime,currentSwipetime;
+    SpriteRenderer lay;
     // Start is called before the first frame update
     void Start()
     {
-        
+        lay=GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            // mask.transform.position=Input.mousePosition;
-            Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition) + " "+ gameObject.transform.position);
-            Vector2 point=Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            // RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)mask.transform.parent, Input.mousePosition, GameObject.Find("Main Camera").camera, out point);
-            // Debug.Log(point);
-            mask.transform.position = point;
-        }
+        if(Input.GetMouseButtonDown(0))
+     {
+         //save began touch 2d point
+         pressed=true;
+        firstPresstime = Time.time;
+     }
+     if(Input.GetMouseButtonUp(0))
+     {
+         pressed=false;
+        //  Check();
+           
+    }
 
+    }
+    private void FixedUpdate() {
+        if(pressed)
+        NegateSome();
+    }
+
+    void Check(){
+ 
+        
+        currentSwipetime = Time.time-firstPresstime;
+        Debug.Log(currentSwipetime);
+        Color col=lay.color;
+        col.a=Mathf.Clamp(col.a-(currentSwipetime/100f),0f,1f);
+        lay.color=col;
+    }
+    void NegateSome(){
+ 
+        
+        float temptime = Time.time-firstPresstime;
+        Color col=lay.color;
+        col.a=Mathf.Clamp(col.a-(0.01f),0f,1f);
+        lay.color=col;
+        firstPresstime=Time.time;
     }
 }

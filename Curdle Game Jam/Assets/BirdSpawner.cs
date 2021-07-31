@@ -19,7 +19,7 @@ public class BirdSpawner : MonoBehaviour
         if(Random.value>0.5)
         a.transform.position=new Vector2(screenBounds.x*2,-1f);
         else
-        a.transform.position=new Vector2(screenBounds.x*2,3.0f);
+        a.transform.position=new Vector2(screenBounds.x*2,2.0f);
 
     }
 

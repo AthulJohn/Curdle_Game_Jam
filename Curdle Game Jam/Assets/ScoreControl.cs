@@ -7,14 +7,10 @@ using TMPro;
 public class ScoreControl : MonoBehaviour
 {
     public float highscore=0f;
-    public GameObject Exhaust,Fire,Ground,Bird;
 
     TextMeshProUGUI scoremesh;
-    float startTime=0f,speed=3f,tensmultiple=10;
+    float startTime=0f,tensmultiple=10;
     int currentScore=0;
-    ExhaustControl ex,fr;
-    GroundControl gr;
-    BirdController brd;
     Animator animator;
     bool paused=false;
     // Start is called before the first frame update
@@ -24,10 +20,6 @@ public class ScoreControl : MonoBehaviour
         scoremesh=GetComponent<TextMeshProUGUI>();
         startTime=Time.time;
         StartCoroutine(TimeIncrementor());
-        ex=Exhaust.GetComponent<ExhaustControl>();
-        fr=Fire.GetComponent<ExhaustControl>();
-        gr=Ground.GetComponent<GroundControl>();
-        brd=Bird.GetComponent<BirdController>();
     }
 
     private void FixedUpdate() {
@@ -37,7 +29,7 @@ public class ScoreControl : MonoBehaviour
        }
         if(Time.time-startTime>tensmultiple&&!paused)
         {
-            Time.timeScale=1.0f+(tensmultiple/300);
+            Time.timeScale=1.0f+(tensmultiple/200);
         tensmultiple+=10;
         }
     }

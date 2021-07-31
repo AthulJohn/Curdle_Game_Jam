@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using TMPro;
 
 public class FireControl : MonoBehaviour
@@ -14,6 +15,7 @@ public class FireControl : MonoBehaviour
     BaloonControl baloonControl;
     bool baloonentered=false,birdentered=false;
     GameObject currentBird;
+    public AudioSource aud;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +60,7 @@ public class FireControl : MonoBehaviour
 
     void Jump(){
         fireAnimator.SetTrigger("FireTrigger");
+        aud.Play();
         if(baloonentered) {     
            baloonControl.GameOver("Hey, Whats the burning smell?");
         }

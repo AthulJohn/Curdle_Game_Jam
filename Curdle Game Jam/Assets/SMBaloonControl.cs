@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SMBaloonControl : MonoBehaviour
 {
     GameObject score;
     Animator animator;
     ScoreControl scontrol;
+    public AudioSource aud;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class SMBaloonControl : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.name=="Baloon")
         {
+            aud.Play();
             animator.SetTrigger("TakeMiniBaloon");
             scontrol.AddExtra();
         }

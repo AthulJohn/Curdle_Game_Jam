@@ -19,4 +19,8 @@ public class PanelControl : MonoBehaviour
     public void Retry(){
         SceneManager.LoadScene(0);
     }
+    
+    public void Quit(){
+        Application.Quit();
+    }
 }
